@@ -12,6 +12,23 @@ const BUTTON_Z_INDEX = 10000;
 const processedFields = new WeakSet();
 const buttonFieldMap = new Map(); // Map buttons to their input fields
 
+// Global resize throttling
+let resizeTimeout = null;
+
+// Single ResizeObserver instance for all input fields
+const inputResizeObserver = new ResizeObserver((entries) => {
+  entries.forEach((entry) => {
+    const input = entry.target;
+    // Find the button for this input
+    for (const [button, field] of buttonFieldMap.entries()) {
+      if (field === input) {
+        positionButton(input, button);
+        break;
+      }
+    }
+  });
+});
+
 // Initialize the extension
 function init() {
   // Watch for new email/username fields
@@ -21,7 +38,6 @@ function init() {
   processEmailFields();
   
   // Set up global resize listener (throttled for performance)
-  let resizeTimeout;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(repositionAllButtons, 100);
@@ -105,8 +121,8 @@ function addHMEButton(input) {
     // Position button dynamically
     positionButton(input, button);
     
-    // Observe input field size changes
-    new ResizeObserver(() => positionButton(input, button)).observe(input);
+    // Observe input field size changes with shared observer
+    inputResizeObserver.observe(input);
   }
 }
 

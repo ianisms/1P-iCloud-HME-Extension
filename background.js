@@ -46,22 +46,31 @@ async function handleAuthentication() {
     });
     
     // Wait for authentication to complete
-    return new Promise((resolve, reject) => {
-      const timeout = setTimeout(() => {
+    return new Promise(async (resolve, reject) => {
+      let timeoutId;
+      
+      const cleanup = () => {
+        clearTimeout(timeoutId);
+        chrome.tabs.onUpdated.removeListener(listener);
+      };
+      
+      timeoutId = setTimeout(() => {
+        cleanup();
         reject(new Error('Authentication timeout'));
       }, AUTH_TIMEOUT_MS);
       
       // Listen for tab updates
-      const listener = (tabId, changeInfo, updatedTab) => {
+      const listener = async (tabId, changeInfo, updatedTab) => {
         if (tabId === tab.id && changeInfo.status === 'complete') {
-          // Check if we're authenticated by looking for cookies
-          chrome.cookies.getAll({
-            domain: ICLOUD_DOMAIN
-          }, (cookies) => {
+          try {
+            // Check if we're authenticated by looking for cookies (using promise-based API)
+            const cookies = await chrome.cookies.getAll({
+              domain: ICLOUD_DOMAIN
+            });
+            
             const sessionCookie = cookies.find(c => c.name === ICLOUD_SESSION_COOKIE);
             if (sessionCookie) {
-              clearTimeout(timeout);
-              chrome.tabs.onUpdated.removeListener(listener);
+              cleanup();
               chrome.tabs.remove(tab.id);
               
               authState.isAuthenticated = true;
@@ -70,7 +79,10 @@ async function handleAuthentication() {
               
               resolve({ authenticated: true });
             }
-          });
+          } catch (error) {
+            cleanup();
+            reject(error);
+          }
         }
       };
       
