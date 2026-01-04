@@ -1,6 +1,11 @@
 // Background script for handling iCloud API communication
 console.log('1Password iCloud Hide My Email Extension loaded');
 
+// Configuration constants
+const AUTH_TIMEOUT_MS = 5 * 60 * 1000; // 5 minutes
+const ICLOUD_SESSION_COOKIE = 'X-APPLE-WEBAUTH-TOKEN';
+const ICLOUD_DOMAIN = '.icloud.com';
+
 // Store authentication state
 let authState = {
   isAuthenticated: false,
@@ -44,16 +49,16 @@ async function handleAuthentication() {
     return new Promise((resolve, reject) => {
       const timeout = setTimeout(() => {
         reject(new Error('Authentication timeout'));
-      }, 300000); // 5 minute timeout
+      }, AUTH_TIMEOUT_MS);
       
       // Listen for tab updates
       const listener = (tabId, changeInfo, updatedTab) => {
         if (tabId === tab.id && changeInfo.status === 'complete') {
           // Check if we're authenticated by looking for cookies
           chrome.cookies.getAll({
-            domain: '.icloud.com'
+            domain: ICLOUD_DOMAIN
           }, (cookies) => {
-            const sessionCookie = cookies.find(c => c.name === 'X-APPLE-WEBAUTH-TOKEN');
+            const sessionCookie = cookies.find(c => c.name === ICLOUD_SESSION_COOKIE);
             if (sessionCookie) {
               clearTimeout(timeout);
               chrome.tabs.onUpdated.removeListener(listener);

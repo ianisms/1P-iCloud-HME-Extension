@@ -4,9 +4,13 @@ console.log('1Password iCloud HME content script loaded');
 // Configuration
 const BUTTON_ID = 'icloud-hme-button';
 const BUTTON_CLASS = 'icloud-hme-btn';
+const BUTTON_SIZE = 32; // px
+const BUTTON_GAP = 4; // px from input field
+const BUTTON_Z_INDEX = 10000;
 
 // Track which fields already have buttons
 const processedFields = new WeakSet();
+const buttonFieldMap = new Map(); // Map buttons to their input fields
 
 // Initialize the extension
 function init() {
@@ -15,6 +19,13 @@ function init() {
   
   // Process existing fields
   processEmailFields();
+  
+  // Set up global resize listener (throttled for performance)
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(repositionAllButtons, 100);
+  });
 }
 
 // Detect email/username input fields
@@ -88,13 +99,27 @@ function addHMEButton(input) {
     // Insert button right after the input field
     input.parentElement.insertBefore(button, input.nextSibling);
     
+    // Track button-field mapping
+    buttonFieldMap.set(button, input);
+    
     // Position button dynamically
     positionButton(input, button);
     
-    // Reposition on window resize or input changes
-    window.addEventListener('resize', () => positionButton(input, button));
+    // Observe input field size changes
     new ResizeObserver(() => positionButton(input, button)).observe(input);
   }
+}
+
+// Reposition all buttons (called on window resize)
+function repositionAllButtons() {
+  buttonFieldMap.forEach((input, button) => {
+    if (document.contains(button) && document.contains(input)) {
+      positionButton(input, button);
+    } else {
+      // Clean up if button or input was removed
+      buttonFieldMap.delete(button);
+    }
+  });
 }
 
 // Position the button next to the input field
@@ -105,9 +130,9 @@ function positionButton(input, button) {
   
   // Position button to the right of the input field
   button.style.position = 'absolute';
-  button.style.left = `${inputRect.right + scrollX + 4}px`; // 4px gap from input
-  button.style.top = `${inputRect.top + scrollY + (inputRect.height - 32) / 2}px`; // Vertically centered
-  button.style.zIndex = '10000';
+  button.style.left = `${inputRect.right + scrollX + BUTTON_GAP}px`;
+  button.style.top = `${inputRect.top + scrollY + (inputRect.height - BUTTON_SIZE) / 2}px`;
+  button.style.zIndex = BUTTON_Z_INDEX.toString();
 }
 
 // Handle button click
