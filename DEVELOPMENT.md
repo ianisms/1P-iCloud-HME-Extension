@@ -110,7 +110,7 @@ document.querySelectorAll('input').forEach(input => {
 
 2. Check if button was added:
 ```javascript
-document.querySelectorAll('.icloud-hme-btn').length
+document.querySelectorAll('.hme-btn').length
 ```
 
 ### API Issues
@@ -183,10 +183,10 @@ Edit `isEmailOrUsernameField()` in content.js to change detection logic.
 ### Changing Button Appearance
 
 Edit styles.css to modify button appearance:
-- `.icloud-hme-btn` - Default state
-- `.icloud-hme-btn.loading` - Loading state
-- `.icloud-hme-btn.success` - Success state
-- `.icloud-hme-btn.error` - Error state
+- `.hme-btn` - Default state
+- `.hme-btn.loading` - Loading state
+- `.hme-btn.success` - Success state
+- `.hme-btn.error` - Error state
 
 ### Updating API Endpoints
 

@@ -2,8 +2,8 @@
 console.log('1Password HME content script loaded');
 
 // Configuration
-const BUTTON_ID = 'icloud-hme-button';
-const BUTTON_CLASS = 'icloud-hme-btn';
+const BUTTON_ID = 'hme-button';
+const BUTTON_CLASS = 'hme-btn';
 const BUTTON_SIZE = 32; // px
 const BUTTON_GAP = 4; // px from input field
 const BUTTON_Z_INDEX = 10000;
@@ -242,7 +242,7 @@ async function handleButtonClick(input, button) {
 // Show notification to user
 function showNotification(message, type = 'info') {
   const notification = document.createElement('div');
-  notification.className = `icloud-hme-notification ${type}`;
+  notification.className = `hme-notification ${type}`;
   notification.textContent = message;
   
   document.body.appendChild(notification);
