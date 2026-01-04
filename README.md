@@ -145,7 +145,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is provided as-is for personal use. Apple, iCloud, and Hide My Email are trademarks of Apple Inc. 1Password is a trademark of AgileBits, Inc.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+Apple, iCloud, and Hide My Email are trademarks of Apple Inc. 1Password is a trademark of AgileBits, Inc.
 
 ## Disclaimer
 
