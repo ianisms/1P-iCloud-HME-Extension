@@ -203,6 +203,7 @@ This repository contains a complete browser extension that integrates Apple's iC
 
 - ✓ Chrome (Manifest V3)
 - ✓ Edge (Manifest V3)
+- ✓ Brave (Manifest V3)
 - ✓ Firefox (with minor adaptations)
 
 ## Requirements Met

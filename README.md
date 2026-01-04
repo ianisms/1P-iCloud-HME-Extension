@@ -12,7 +12,7 @@ A browser extension that seamlessly integrates Apple's iCloud Hide My Email serv
 
 ## How It Works
 
-1. **Install the Extension**: Load the extension in your browser (Chrome, Edge, or Firefox)
+1. **Install the Extension**: Load the extension in your browser (Chrome, Edge, Brave, or Firefox)
 2. **Sign in to iCloud**: Click the extension icon and authenticate with your Apple ID
 3. **Visit Any Website**: Navigate to a website with a login form
 4. **Click the Shield Button**: A blue shield icon appears to the right of email/username fields
@@ -25,6 +25,15 @@ A browser extension that seamlessly integrates Apple's iCloud Hide My Email serv
 
 1. Clone or download this repository
 2. Open Chrome/Edge and navigate to `chrome://extensions/` (or `edge://extensions/`)
+3. Enable "Developer mode" in the top right corner
+4. Click "Load unpacked"
+5. Select the extension directory
+6. The extension icon should appear in your browser toolbar
+
+### Brave (Developer Mode)
+
+1. Clone or download this repository
+2. Open Brave and navigate to `brave://extensions/`
 3. Enable "Developer mode" in the top right corner
 4. Click "Load unpacked"
 5. Select the extension directory
@@ -67,7 +76,7 @@ All generated Hide My Email addresses can be managed through:
 
 ## Requirements
 
-- **Browser**: Chrome, Edge, or Firefox (Manifest V3 compatible)
+- **Browser**: Chrome, Edge, Brave, or Firefox (Manifest V3 compatible)
 - **iCloud+**: Active iCloud+ subscription (Hide My Email is an iCloud+ feature)
 - **Apple ID**: Valid Apple ID for authentication
 - **1Password**: 1Password browser extension (optional but recommended)

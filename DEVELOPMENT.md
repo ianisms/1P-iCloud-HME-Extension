@@ -12,6 +12,14 @@
 4. Select this directory
 ```
 
+#### Brave
+```bash
+1. Open brave://extensions/
+2. Enable "Developer mode" (toggle in top-right)
+3. Click "Load unpacked"
+4. Select this directory
+```
+
 #### Firefox
 ```bash
 1. Open about:debugging#/runtime/this-firefox
@@ -188,7 +196,7 @@ Edit `handleGenerateEmail()` in background.js to modify API calls.
 
 ### Before Release
 
-1. Test on multiple browsers (Chrome, Edge, Firefox)
+1. Test on multiple browsers (Chrome, Edge, Brave, Firefox)
 2. Test on multiple websites
 3. Verify all console errors are handled
 4. Update version in manifest.json
