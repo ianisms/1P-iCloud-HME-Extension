@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Page - iCloud HME Extension</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h1 {
+      color: #1d1d1f;
+      font-size: 32px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: #86868b;
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #1d1d1f;
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e5e5e7;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      outline: none;
+      border-color: #007aff;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 12px 16px;
+      background: #007aff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+
+    button[type="submit"]:hover {
+      background: #0051d5;
+    }
+
+    .info {
+      background: #f5f5f7;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 24px;
+      font-size: 13px;
+      color: #86868b;
+      line-height: 1.5;
+    }
+
+    .info strong {
+      color: #1d1d1f;
+    }
+
+    .test-cases {
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid #e5e5e7;
+    }
+
+    .test-cases h2 {
+      font-size: 20px;
+      color: #1d1d1f;
+      margin-bottom: 16px;
+    }
+
+    .test-case {
+      margin-bottom: 24px;
+    }
+
+    .test-case h3 {
+      font-size: 14px;
+      color: #86868b;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Test Login Form</h1>
+    <p class="subtitle">For testing the iCloud Hide My Email Extension</p>
+
+    <form id="loginForm" onsubmit="return false;">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          placeholder="your@email.com"
+          autocomplete="email"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          placeholder="Enter your password"
+          autocomplete="current-password"
+        >
+      </div>
+
+      <button type="submit">Sign In</button>
+    </form>
+
+    <div class="info">
+      <strong>Testing Instructions:</strong><br>
+      1. Load the extension in your browser<br>
+      2. Click the shield button that appears to the right of the email field<br>
+      3. A new iCloud Hide My Email address should be generated and filled in<br>
+      4. The email field should be populated automatically
+    </div>
+
+    <div class="test-cases">
+      <h2>Additional Test Cases</h2>
+      
+      <div class="test-case">
+        <h3>Username Field (Type: text)</h3>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input 
+            type="text" 
+            id="username" 
+            name="username" 
+            placeholder="username"
+            autocomplete="username"
+          >
+        </div>
+      </div>
+
+      <div class="test-case">
+        <h3>Login Field (Name includes 'login')</h3>
+        <div class="form-group">
+          <label for="login">Login</label>
+          <input 
+            type="text" 
+            id="login" 
+            name="login_email" 
+            placeholder="Enter login"
+          >
+        </div>
+      </div>
+
+      <div class="test-case">
+        <h3>User Email Field (ID includes 'user')</h3>
+        <div class="form-group">
+          <label for="user-email">User Email</label>
+          <input 
+            type="text" 
+            id="user-email" 
+            name="user_email" 
+            placeholder="Enter user email"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple form handler for testing
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      alert(`Form submitted!\nEmail: ${email}\nPassword: ${password ? '****' : '(empty)'}`);
+    });
+
+    // Log input changes for debugging
+    const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
+    inputs.forEach(input => {
+      input.addEventListener('input', (e) => {
+        console.log(`Input changed: ${e.target.id} = ${e.target.value}`);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1Password iCloud Hide My Email</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 320px;
+      min-height: 400px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f5f5f7;
+      color: #1d1d1f;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #007aff 0%, #0051d5 100%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .header p {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .status {
+      background: white;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .status-label {
+      font-size: 12px;
+      color: #86868b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .status-value {
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .status-indicator.connected {
+      background: #34c759;
+    }
+
+    .status-indicator.disconnected {
+      background: #ff3b30;
+    }
+
+    .button {
+      width: 100%;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .button-primary {
+      background: #007aff;
+      color: white;
+    }
+
+    .button-primary:hover {
+      background: #0051d5;
+    }
+
+    .button-secondary {
+      background: white;
+      color: #007aff;
+      border: 1px solid #007aff;
+    }
+
+    .button-secondary:hover {
+      background: #f5f5f7;
+    }
+
+    .button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .info-section {
+      background: white;
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-section h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .info-section p {
+      font-size: 12px;
+      color: #86868b;
+      line-height: 1.5;
+    }
+
+    .info-section ul {
+      font-size: 12px;
+      color: #86868b;
+      line-height: 1.6;
+      margin-left: 20px;
+      margin-top: 8px;
+    }
+
+    .footer {
+      padding: 16px 20px;
+      text-align: center;
+      font-size: 11px;
+      color: #86868b;
+      border-top: 1px solid #e5e5e7;
+      background: white;
+    }
+
+    .footer a {
+      color: #007aff;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .message {
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    .message.success {
+      background: #d1f4dd;
+      color: #1e7e34;
+    }
+
+    .message.error {
+      background: #ffe5e5;
+      color: #c41e3a;
+    }
+
+    .loading {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🔐 iCloud Hide My Email</h1>
+    <p>For 1Password</p>
+  </div>
+
+  <div class="content">
+    <div id="message" class="message"></div>
+
+    <div class="status">
+      <div class="status-label">iCloud Status</div>
+      <div class="status-value">
+        <span id="status-indicator" class="status-indicator disconnected"></span>
+        <span id="status-text">Not Connected</span>
+      </div>
+    </div>
+
+    <button id="auth-button" class="button button-primary">
+      Sign in with iCloud
+    </button>
+
+    <div class="info-section">
+      <h3>How to Use</h3>
+      <ul>
+        <li>Click "Sign in with iCloud" to authenticate</li>
+        <li>Visit any website with a login form</li>
+        <li>Click the shield button next to email fields</li>
+        <li>A new Hide My Email address will be generated</li>
+        <li>Save the login with 1Password as usual</li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <h3>About</h3>
+      <p>
+        This extension integrates iCloud's Hide My Email service with 1Password,
+        allowing you to generate private email addresses for your logins without
+        leaving your browser.
+      </p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Made with ❤️ for 1Password users</p>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
