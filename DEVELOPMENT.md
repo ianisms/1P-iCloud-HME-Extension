@@ -38,8 +38,8 @@
 - Open Developer Tools (F12)
 - Check the Console tab for extension logs
 - Look for messages like:
-  - "1Password iCloud HME content script loaded"
-  - "1Password iCloud Hide My Email Extension loaded"
+  - "1Password HME content script loaded"
+  - "1Password Hide My Email Extension loaded"
 
 ## Testing Workflow
 

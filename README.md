@@ -1,10 +1,10 @@
-# 1Password iCloud Hide My Email Extension
+# 1Password Hide My Email Extension
 
 A browser extension that seamlessly integrates Apple's iCloud Hide My Email service with 1Password, allowing you to generate private email addresses directly from login forms.
 
 ## Features
 
-- 🔐 **One-Click Email Generation**: Generate iCloud Hide My Email addresses with a single click
+- 🔐 **One-Click Email Generation**: Generate Hide My Email addresses with a single click
 - 🎯 **Smart Field Detection**: Automatically detects email and username fields on any website
 - 🔄 **Seamless 1Password Integration**: Works alongside 1Password's save login flow
 - 🎨 **Beautiful UI**: Clean, modern interface that matches Apple's design language
@@ -93,7 +93,7 @@ All generated Hide My Email addresses can be managed through:
 ### Project Structure
 
 ```
-1P-iCloud-HME-Extension/
+1P-HME-Extension/
 ├── manifest.json          # Extension manifest (Manifest V3)
 ├── background.js          # Service worker for API communication
 ├── content.js            # Content script for page integration

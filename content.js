@@ -1,5 +1,5 @@
 // Content script for detecting email fields and adding HME button
-console.log('1Password iCloud HME content script loaded');
+console.log('1Password HME content script loaded');
 
 // Configuration
 const BUTTON_ID = 'icloud-hme-button';
@@ -95,7 +95,7 @@ function addHMEButton(input) {
   const button = document.createElement('button');
   button.className = BUTTON_CLASS;
   button.type = 'button';
-  button.title = 'Generate iCloud Hide My Email';
+  button.title = 'Generate Hide My Email';
   button.innerHTML = `
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M8 1L3 4V7C3 10.5 5.5 13.5 8 14.5C10.5 13.5 13 10.5 13 7V4L8 1Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
