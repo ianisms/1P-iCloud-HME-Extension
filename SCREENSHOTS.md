@@ -7,7 +7,7 @@ The extension popup provides a clean interface for authentication and status:
 ### Not Authenticated
 ```
 ┌─────────────────────────────────────┐
-│  🔐 iCloud Hide My Email            │
+│  🔐 Hide My Email                   │
 │  For 1Password                      │
 ├─────────────────────────────────────┤
 │  iCloud Status                      │
@@ -29,7 +29,7 @@ The extension popup provides a clean interface for authentication and status:
 ### Authenticated
 ```
 ┌─────────────────────────────────────┐
-│  🔐 iCloud Hide My Email            │
+│  🔐 Hide My Email                   │
 │  For 1Password                      │
 ├─────────────────────────────────────┤
 │  iCloud Status                      │

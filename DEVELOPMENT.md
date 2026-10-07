@@ -38,8 +38,8 @@
 - Open Developer Tools (F12)
 - Check the Console tab for extension logs
 - Look for messages like:
-  - "1Password iCloud HME content script loaded"
-  - "1Password iCloud Hide My Email Extension loaded"
+  - "1Password HME content script loaded"
+  - "1Password Hide My Email Extension loaded"
 
 ## Testing Workflow
 
@@ -110,7 +110,7 @@ document.querySelectorAll('input').forEach(input => {
 
 2. Check if button was added:
 ```javascript
-document.querySelectorAll('.icloud-hme-btn').length
+document.querySelectorAll('.hme-btn').length
 ```
 
 ### API Issues
@@ -183,10 +183,10 @@ Edit `isEmailOrUsernameField()` in content.js to change detection logic.
 ### Changing Button Appearance
 
 Edit styles.css to modify button appearance:
-- `.icloud-hme-btn` - Default state
-- `.icloud-hme-btn.loading` - Loading state
-- `.icloud-hme-btn.success` - Success state
-- `.icloud-hme-btn.error` - Error state
+- `.hme-btn` - Default state
+- `.hme-btn.loading` - Loading state
+- `.hme-btn.success` - Success state
+- `.hme-btn.error` - Error state
 
 ### Updating API Endpoints
 

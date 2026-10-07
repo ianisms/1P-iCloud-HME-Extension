@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "1Password iCloud Hide My Email",
+  "name": "1Password Hide My Email",
   "version": "1.0.0",
-  "description": "Create and manage iCloud Hide My Email addresses directly from 1Password login flows",
+  "description": "Create and manage Hide My Email addresses directly from 1Password login flows",
   "permissions": [
     "storage",
     "cookies",

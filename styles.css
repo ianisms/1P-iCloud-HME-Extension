@@ -1,6 +1,6 @@
-/* Styles for iCloud Hide My Email button */
+/* Styles for Hide My Email button */
 
-.icloud-hme-btn {
+.hme-btn {
   position: absolute;
   width: 32px;
   height: 32px;
@@ -18,41 +18,41 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.icloud-hme-btn:hover {
+.hme-btn:hover {
   background: #0051d5;
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.icloud-hme-btn:active {
+.hme-btn:active {
   transform: scale(0.95);
 }
 
-.icloud-hme-btn:disabled {
+.hme-btn:disabled {
   cursor: not-allowed;
   opacity: 0.6;
 }
 
-.icloud-hme-btn.loading {
+.hme-btn.loading {
   background: #5ac8fa;
 }
 
-.icloud-hme-btn.success {
+.hme-btn.success {
   background: #34c759;
 }
 
-.icloud-hme-btn.error {
+.hme-btn.error {
   background: #ff3b30;
 }
 
-.icloud-hme-btn svg {
+.hme-btn svg {
   width: 16px;
   height: 16px;
   color: white;
 }
 
 /* Notification styles */
-.icloud-hme-notification {
+.hme-notification {
   position: fixed;
   top: 20px;
   right: 20px;
@@ -69,19 +69,19 @@
   animation: slideIn 0.3s ease;
 }
 
-.icloud-hme-notification.info {
+.hme-notification.info {
   border-left: 4px solid #007aff;
 }
 
-.icloud-hme-notification.success {
+.hme-notification.success {
   border-left: 4px solid #34c759;
 }
 
-.icloud-hme-notification.error {
+.hme-notification.error {
   border-left: 4px solid #ff3b30;
 }
 
-.icloud-hme-notification.fade-out {
+.hme-notification.fade-out {
   animation: slideOut 0.3s ease;
   opacity: 0;
 }
